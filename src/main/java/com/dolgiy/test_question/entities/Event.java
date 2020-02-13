@@ -1,6 +1,7 @@
 package com.dolgiy.test_question.entities;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 
 @Entity //указывает, что это не просто класс, а сущность, которая будет храниться в БД
 @Table(schema = "csv",name ="Events")
@@ -10,17 +11,17 @@ public class Event {
 
     private int Id; //ИД записи в таблице
     private String Ssoid; //Уникальный ИД пользователя
-    private String Ts;//время
+    private Integer Ts;//время
     private String Grp;//группа события
     private String Type;//тип события
     private String Subtype;//подтип события
     private String Url;//Адрес, с которого пришло событие
     private String Orgid;//Организация, предоставляющая услугу
     private String Formid;//Идентификатор формы
-    private String Code;//
+    private String Code;//??
     private String Ltpa;//ключ сессии (пустой)
     private String Sudirresponce;//ответ от сервиса авторизации (пустой)
-    private String Ymdh;//Дата в формате YYYY-MM-DD-HH
+    private Timestamp Ymdh;//Дата в формате YYYY-MM-DD-HH (TimeStamp - наиболее подходящий тип)
 
     public Event() {
     }
@@ -36,7 +37,7 @@ public class Event {
         Ssoid = ssoid;
     }
 
-    public void setTs(String ts) {
+    public void setTs(Integer ts) {
         Ts = ts;
     }
 
@@ -76,7 +77,7 @@ public class Event {
         Sudirresponce = sudirresponce;
     }
 
-    public void setYmdh(String ymdh) {
+    public void setYmdh(Timestamp ymdh) {
         Ymdh = ymdh;
     }
 
@@ -88,7 +89,7 @@ public class Event {
         return Ssoid;
     }
 
-    public String getTs() {
+    public Integer getTs() {
         return Ts;
     }
 
@@ -128,7 +129,7 @@ public class Event {
         return Sudirresponce;
     }
 
-    public String getYmdh() {
+    public Timestamp getYmdh() {
         return Ymdh;
     }
 }
