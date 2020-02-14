@@ -9,127 +9,129 @@ public class Event {
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
 
-    private int Id; //ИД записи в таблице
-    private String Ssoid; //Уникальный ИД пользователя
-    private Integer Ts;//время
-    private String Grp;//группа события
-    private String Type;//тип события
-    private String Subtype;//подтип события
-    private String Url;//Адрес, с которого пришло событие
-    private String Orgid;//Организация, предоставляющая услугу
-    private String Formid;//Идентификатор формы
-    private String Code;//??
-    private String Ltpa;//ключ сессии (пустой)
-    private String Sudirresponce;//ответ от сервиса авторизации (пустой)
-    private Timestamp Ymdh;//Дата в формате YYYY-MM-DD-HH (TimeStamp - наиболее подходящий тип)
+    private int id; //ИД записи в таблице
+    private String ssoid; //Уникальный ИД пользователя
+    private Integer ts;//время
+    private String grp;//группа события
+    private String type;//тип события
+    private String subtype;//подтип события
+    private String url;//Адрес, с которого пришло событие
+    private String orgid;//Организация, предоставляющая услугу
+    private String formid;//Идентификатор формы
+    private String code;//??
+    private String ltpa;//ключ сессии (пустой)
+    private String sudirresponce;//ответ от сервиса авторизации (пустой)
+    private Timestamp ymdh;//Дата в формате YYYY-MM-DD-HH (TimeStamp - наиболее подходящий тип)
+
+    public void setId(int id) {
+        id = id;
+    }
+
+    public void setSsoid(String ssoid) {
+        this.ssoid = ssoid;
+    }
+
+    public void setTs(Integer ts) {
+        this.ts = ts;
+    }
+
+    public void setGrp(String grp) {
+        this.grp = grp;
+    }
+
+    public void setType(String type) {
+        this.type = type;
+    }
+
+    public void setSubtype(String subtype) {
+        this.subtype = subtype;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    public void setOrgid(String orgid) {
+        this.orgid = orgid;
+    }
+
+    public void setFormid(String formid) {
+        this.formid = formid;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
+    }
+
+    public void setLtpa(String ltpa) {
+        this.ltpa = ltpa;
+    }
+
+    public void setSudirresponce(String sudirresponce) {
+        this.sudirresponce = sudirresponce;
+    }
+
+    public void setYmdh(Timestamp ymdh) {
+        this.ymdh = ymdh;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getSsoid() {
+        return ssoid;
+    }
+
+    public Integer getTs() {
+        return ts;
+    }
+
+    public String getGrp() {
+        return grp;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public String getSubtype() {
+        return subtype;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public String getOrgid() {
+        return orgid;
+    }
+
+    public String getFormid() {
+        return formid;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public String getLtpa() {
+        return ltpa;
+    }
+
+    public String getSudirresponce() {
+        return sudirresponce;
+    }
+
+    public Timestamp getYmdh() {
+        return ymdh;
+    }
 
     public Event() {
     }
 
     public String toString(){
-        return Ssoid+" /"+Ts+" /"+Grp+" /"+Type+" /"+Subtype+" /"+Url+" /"+Orgid+" /"+Formid+" /"+Code+" /"+Ltpa+" /"+Sudirresponce+" /"+Ymdh+"\n";
-    }
-    public void setId(int id) {
-        Id = id;
+        return ssoid+" /"+ts+" /"+grp+" /"+type+" /"+subtype+" /"+url+" /"+orgid+" /"+formid+" /"+code+" /"+ltpa+" /"+sudirresponce+" /"+ymdh+"\n";
     }
 
-    public void setSsoid(String ssoid) {
-        Ssoid = ssoid;
-    }
-
-    public void setTs(Integer ts) {
-        Ts = ts;
-    }
-
-    public void setGrp(String grp) {
-        Grp = grp;
-    }
-
-    public void setType(String type) {
-        Type = type;
-    }
-
-    public void setSubtype(String subtype) {
-        Subtype = subtype;
-    }
-
-    public void setUrl(String url) {
-        Url = url;
-    }
-
-    public void setOrgid(String orgid) {
-        Orgid = orgid;
-    }
-
-    public void setFormid(String formid) {
-        Formid = formid;
-    }
-
-    public void setCode(String code) {
-        Code = code;
-    }
-
-    public void setLtpa(String ltpa) {
-        Ltpa = ltpa;
-    }
-
-    public void setSudirresponce(String sudirresponce) {
-        Sudirresponce = sudirresponce;
-    }
-
-    public void setYmdh(Timestamp ymdh) {
-        Ymdh = ymdh;
-    }
-
-    public int getId() {
-        return Id;
-    }
-
-    public String getSsoid() {
-        return Ssoid;
-    }
-
-    public Integer getTs() {
-        return Ts;
-    }
-
-    public String getGrp() {
-        return Grp;
-    }
-
-    public String getType() {
-        return Type;
-    }
-
-    public String getSubtype() {
-        return Subtype;
-    }
-
-    public String getUrl() {
-        return Url;
-    }
-
-    public String getOrgid() {
-        return Orgid;
-    }
-
-    public String getFormid() {
-        return Formid;
-    }
-
-    public String getCode() {
-        return Code;
-    }
-
-    public String getLtpa() {
-        return Ltpa;
-    }
-
-    public String getSudirresponce() {
-        return Sudirresponce;
-    }
-
-    public Timestamp getYmdh() {
-        return Ymdh;
-    }
 }

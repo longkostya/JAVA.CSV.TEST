@@ -1,11 +1,11 @@
 package com.dolgiy.test_question;
 
 import com.dolgiy.test_question.entities.Event;
+import com.dolgiy.test_question.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Component;
 
 import java.io.IOException;
@@ -21,12 +21,11 @@ import java.util.List;
 public class TestQuestionApplication implements CommandLineRunner{
 
 	@Autowired
-	private EventDao eventDao;
+	private EventService eventService;
+
 	public static void main(String[] args) throws IOException {
 		SpringApplication.run(TestQuestionApplication.class, args);		//точка входа в spring-приложение
-
 	}
-	//https://www.mos.ru/pgu/ru/application/gibdd/fines/?utm_source=mos&amp; utm_medium=ek&amp; utm_referrer=mos.ru&amp; utm_campaign=popular&amp; utm_term=884533#step_1
 
 	private static String[] splitText(String text){						//в некоторых URL-ах есть ";", костыль, но работает!
 		List <String> splitedText = new ArrayList<String>();			//вспомогательный список
@@ -72,7 +71,7 @@ public class TestQuestionApplication implements CommandLineRunner{
 		List <Event> listOfEvents = new ArrayList<Event>();							//Список событий
 		List<String>fileLines =  Files.readAllLines(Paths.get(filePath));			//Список всех строк в csv-файле
 
-		for(int i=1;i<fileLines.size();i++){// String  fileLine:fileLines){			//1 строку не читаю, т.к. в ней названия полей
+		for(int i=1;i<fileLines.size();i++){// String  fileLine:fileLines){			//1-ую строку не читаю, т.к. в ней названия полей
 			String[] splitedText=splitText(fileLines.get(i));						//массив с найденными подстроками
 
 		Event event = new Event();													//создаю экземпляр класса Event
@@ -103,15 +102,18 @@ public class TestQuestionApplication implements CommandLineRunner{
 	@Override
 	public void run(String... args) throws Exception {
 		String filePath = "src/main/resources/test_case.csv";						//Путь до файла
-		List<Event> listOfEvents = ParseEventCsv(filePath);							//список экземпляров, полученных из файла csv
-		for (Event event : listOfEvents)
+		//List<Event> listOfEvents = ParseEventCsv(filePath);							//список экземпляров, полученных из файла csv
+		//for (Event event : listOfEvents)
 		//System.out.println(listOfEvents.get(i));
 		{
-			Event save = eventDao.save(event);										//каждый экземпляр отправляем в БД
+			//Event save = eventService.addEvent(event);										//каждый экземпляр отправляем в БД
 		}
+
+		//List<Event> K = eventDao.findSsoid();
+		//for(Event a:K) {System.out.print(a);}
+		//List<Event> eventList = eventService.getEventInfoBySsoid("7693d80e-cd53-4534-8e2c-302de95a750f");
+		//for (Event a: eventList) System.out.print(a);
+		//List<String> z = eventService.getUserWho();
+		//for (String a: z) System.out.println(a);
 	}
 }
-
-
-interface EventDao extends CrudRepository<Event, Integer> {							//Интерфейс, содержащий CRUD
-}																					//CREATE READ UPDATE DELETE
