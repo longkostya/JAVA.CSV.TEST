@@ -5,22 +5,23 @@ import com.dolgiy.test_question.entities.Event;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 @Service
-public class EventService {
+public class EventService {                             //реализация абстрактных методов, описанных в EventDao
     @Autowired
     private EventDao eventDao;
-    public Event addEvent(Event event){
+
+    public Event addEvent(Event event) {
         return eventDao.save(event);
     }
 
-
-    public List<Event> getEventInfoBySsoid(String ssoid) {
-        return (List<Event>) eventDao.findBySsoid(ssoid);
-    }
     public List<String> getUserWho() {
         return (List<String>) eventDao.findUserWho();
+    }
+
+    public List<String> getTop5Form() {
+        return (List<String>) eventDao.findTop5();
     }
 }

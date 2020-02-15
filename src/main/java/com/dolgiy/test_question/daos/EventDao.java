@@ -9,12 +9,10 @@ import java.util.List;
 
 public interface EventDao extends CrudRepository<Event, Integer> {
 
- //   @Query("SELECT DISTINCT  ssoid FROM events")
-    //List<Event> findSsoid();
-    //List<Event> findBySsoid(String ssoid);
 
-   // @Override
     Iterable<Event> findBySsoid(String ssoid);
     @Query("select e.ssoid, e.subtype from Event e where e.subtype <> 'send' AND e.subtype <> 'start'")
-    List<String> findUserWho();
+    List<String> findUserWho();//Пользователи, не дошли до конца
+    @Query("select e.formid, count(e.formid) as CountOfUsages from Event e group by e.formid  order by CountOfUsages")
+    List<String>findTop5();//самые используемые формы
 }

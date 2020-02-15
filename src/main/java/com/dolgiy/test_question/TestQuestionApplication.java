@@ -1,5 +1,6 @@
 package com.dolgiy.test_question;
 
+import com.dolgiy.test_question.controllers.EventController;
 import com.dolgiy.test_question.entities.Event;
 import com.dolgiy.test_question.services.EventService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +8,7 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.stereotype.Component;
+import org.springframework.ui.Model;
 
 import java.io.IOException;
 import java.nio.file.Files;
@@ -28,7 +30,7 @@ public class TestQuestionApplication implements CommandLineRunner{
 	}
 
 	private static String[] splitText(String text){						//в некоторых URL-ах есть ";", костыль, но работает!
-		List <String> splitedText = new ArrayList<String>();			//вспомогательный список
+		List <String> splitedText = new ArrayList<String>();					//вспомогательный список
 		String[] rezult = new String[12];								//результат сплита - 12 строк
 		int sepCount=0;
 		for (int i=0;i<text.length();i++)
@@ -86,34 +88,27 @@ public class TestQuestionApplication implements CommandLineRunner{
 		event.setCode(splitedText[8]);
 		event.setLtpa(splitedText[9]);
 		event.setSudirresponce(splitedText[10]);
-		String[]splitedData=splitedText[11].split("-",4);				//разбиваю дату на массив [год, месяц, день, час]
-		LocalDateTime tempData = LocalDateTime.of(Integer.parseInt(splitedData[0]), //хитрое приведение к нужному формату даты
-											      Integer.parseInt(splitedData[1]),
-												  Integer.parseInt(splitedData[2]),
-												  Integer.parseInt(splitedData[3]),
-																		0);
+		String[]splitedData=splitedText[11].split("-",4);		//разбиваю дату на массив [год, месяц, день, час]
+		LocalDateTime tempData =
+				LocalDateTime.of(Integer.parseInt(splitedData[0]), 			//хитрое приведение к нужному формату даты
+								 Integer.parseInt(splitedData[1]),
+								 Integer.parseInt(splitedData[2]),
+								 Integer.parseInt(splitedData[3]),
+													   0);
 		Timestamp rezultData = Timestamp.valueOf(tempData);
 		event.setYmdh(rezultData);
-		listOfEvents.add(event);													//закидываю полученный экземпляр в список
+		listOfEvents.add(event);											//закидываю полученный экземпляр в список
 		}
-		return listOfEvents;														//возвращаю список экземпляров Event
+		return listOfEvents;												//возвращаю список экземпляров Event
 	}
 
 	@Override
 	public void run(String... args) throws Exception {
-		String filePath = "src/main/resources/test_case.csv";						//Путь до файла
-		//List<Event> listOfEvents = ParseEventCsv(filePath);							//список экземпляров, полученных из файла csv
-		//for (Event event : listOfEvents)
-		//System.out.println(listOfEvents.get(i));
+		String filePath = "src/main/resources/test_case.csv";				//Путь до файла
+		List<Event> listOfEvents = ParseEventCsv(filePath);					//список экземпляров, полученных из файла csv
+		for (Event event : listOfEvents)
 		{
-			//Event save = eventService.addEvent(event);										//каждый экземпляр отправляем в БД
+			Event save = eventService.addEvent(event);						//каждый экземпляр отправляем в БД
 		}
-
-		//List<Event> K = eventDao.findSsoid();
-		//for(Event a:K) {System.out.print(a);}
-		//List<Event> eventList = eventService.getEventInfoBySsoid("7693d80e-cd53-4534-8e2c-302de95a750f");
-		//for (Event a: eventList) System.out.print(a);
-		//List<String> z = eventService.getUserWho();
-		//for (String a: z) System.out.println(a);
 	}
 }
