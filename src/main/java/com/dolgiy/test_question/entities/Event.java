@@ -1,6 +1,7 @@
 package com.dolgiy.test_question.entities;
 
 import javax.persistence.*;
+import java.sql.Time;
 import java.sql.Timestamp;
 
 @Entity //указывает, что это не просто класс, а сущность, которая будет храниться в БД

@@ -6,13 +6,13 @@
     <link href="../static/css/style.css" th:href="@{/static/css/style.css}" rel="stylesheet" />
 </head>
 <body>
-<p>Вывести список пользователей, которые начали активность на форме и не дошли до конца.</p>
+<p>Cписок пользователей и используемых ими форм за последний час</p>
 <table >
-    <th:block th:each="user : ${UsersWhoDidNotEnded}">
+    <th:block th:each="user : ${SsoidAndForms}">
         <tr>
             <td th:text="${user}"></td>
         </tr>
-    </th:block>>
+    </th:block>
 </table>
 </body>
 </html>

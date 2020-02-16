@@ -3,15 +3,16 @@
 <head>
     <title>Getting Started: Serving Web Content</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-    <link href="css/style.css" th:href="@{/templates/css/style.css}" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" th:href="@{/static/css/style.css}"/>
 </head>
 <body>
-<table>
+<p>ТОП-5 самых используемых форм</p>
+<table >
     <th:block th:each="form : ${top5Form}">
         <tr>
-            <td th:text="${top5Form}"></td>
+            <td th:text="${form}"></td>
         </tr>
-    </th:block>>
+    </th:block>
 </table>
 </body>
 </html>

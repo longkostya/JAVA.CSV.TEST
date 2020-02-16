@@ -14,8 +14,10 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 @SpringBootApplication
@@ -30,7 +32,7 @@ public class TestQuestionApplication implements CommandLineRunner{
 	}
 
 	private static String[] splitText(String text){						//в некоторых URL-ах есть ";", костыль, но работает!
-		List <String> splitedText = new ArrayList<String>();					//вспомогательный список
+		List <String> splitedText = new ArrayList<String>();			//вспомогательный список
 		String[] rezult = new String[12];								//результат сплита - 12 строк
 		int sepCount=0;
 		for (int i=0;i<text.length();i++)
@@ -46,8 +48,8 @@ public class TestQuestionApplication implements CommandLineRunner{
 				splitedText.add(_splitedText[i]);						//идут в вспомогательный массив
 			}
 																		//остальные подстроки остаются "склеенными"
-			String[] _rightPart = _splitedText[5].split(";");	//спличу по ;
-			int _rightSize= _rightPart.length;							//
+			String[] _rightPart = _splitedText[5].split(";");	//спличу по ";"
+			int _rightSize= _rightPart.length;
 			String Url="";
 			for(int i=0;i<_rightPart.length-6;i++)						//выделяю границы подстроки, содержащей URL
 			{
